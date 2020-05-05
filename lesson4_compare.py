@@ -61,3 +61,14 @@ for i, row in enumerate(survey.split('\n')):
 # accidentally overwriting your original!
 # By the end, your all_employees.csv should contain the following columns: name, email, 
 # phone, department, position, twitter, github
+
+with open('all_employees_updated.csv', 'w') as updated_employees_file:
+
+    # Write header row.
+    updated_employees_file.write('name,email,phone,department,position,twitter,github\n')
+
+    # Add employee information to the file.
+    for email, info in employee_directory.items():
+        row = ','.join([info['name'], email, info['phone'], info['department'], 
+            info['position'], info.get('twitter', ''), info.get('github', '')])
+        updated_employees_file.write(row+'\n')
